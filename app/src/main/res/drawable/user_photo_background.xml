@@ -1,0 +1,22 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer ring -->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <corners android:radius="50dp" />
+            <stroke
+                android:width="3dp"
+                android:color="#5B2F7A" /> <!-- Black border -->
+            <solid android:color="#00000000" /> <!-- Transparent center -->
+        </shape>
+    </item>
+
+    <!-- Inner circle -->
+    <item android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp">
+        <shape
+            android:shape="rectangle">
+            <corners android:radius="50dp" />
+            <solid android:color="#C195E0" /> <!-- Purple color -->
+        </shape>
+    </item>
+</layer-list>

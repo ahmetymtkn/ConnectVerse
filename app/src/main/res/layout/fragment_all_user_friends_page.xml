@@ -1,0 +1,36 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#984ECB"
+    tools:context=".AllUserFriendsPage" >
+
+    <EditText
+        android:id="@+id/findfriendedit"
+        android:layout_width="316dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#2F184C"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:hint="FIND FRIENDS"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="#CBC1C1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alluser"
+        android:layout_width="419dp"
+        android:layout_height="664dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findfriendedit" />
+</androidx.constraintlayout.widget.ConstraintLayout>

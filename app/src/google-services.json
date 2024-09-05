@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "18370457233",
+    "project_id": "connectversedb",
+    "storage_bucket": "connectversedb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18370457233:android:afd0105babcf2f18eb1930",
+        "android_client_info": {
+          "package_name": "com.ahmetymtkn.connectversenew"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjclbEmGtSr6ryleiQvB_NKF7723cQIac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
