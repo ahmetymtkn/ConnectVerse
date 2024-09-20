@@ -1,0 +1,9 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#BC98E0"/> <!-- Kutucuk arka plan rengi -->
+    <corners
+        android:topLeftRadius="15dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="15dp"
+        android:bottomRightRadius="15dp"
+        />
+</shape>

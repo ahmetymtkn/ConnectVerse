@@ -11,7 +11,7 @@
     <!-- ImageView'in ana arka planı -->
     <item>
         <shape>
-            <solid android:color="#FFFFFF"/> <!-- İç rengi beyaz -->
+            <solid android:color="#2C2C2C"/> <!-- İç rengi beyaz -->
             <corners android:radius="12dp"/>
         </shape>
     </item>

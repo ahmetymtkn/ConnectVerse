@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/friendrelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp">
@@ -10,15 +9,15 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:background="@drawable/user_photo_background"
         android:scaleType="centerCrop"
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/alluserimage"
+            android:id="@+id/chatsuserimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -30,17 +29,38 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/allusername"
+        android:id="@+id/chatsusername"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Yumurtkan"
+        android:text="yumurtkan"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lastmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="lastMessage"
+        android:textColor="#7C7B7B"
+        app:layout_constraintStart_toStartOf="@+id/chatsusername"
+        app:layout_constraintTop_toBottomOf="@+id/chatsusername" />
+
+    <ImageView
+        android:id="@+id/chatspagetrash"
+        android:layout_width="33dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533"
+        app:srcCompat="@drawable/trash" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

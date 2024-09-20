@@ -31,6 +31,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 
@@ -79,8 +81,11 @@ public class AllUserFriendsPage extends Fragment {
                 // No action needed
             }
         });
+
         getfriend();
+
         return binding.getRoot();
+
     }
 
     @Override
@@ -100,39 +105,27 @@ public class AllUserFriendsPage extends Fragment {
                     userArrayList.clear();
                     for (DocumentSnapshot snapshot : value.getDocuments()) {
                         Map<String, Object> data = snapshot.getData();
-                        String friendname = (String) data.get("userfriends");
-                        if (friendname != null) {
-                            db.collection("users").document(friendname)
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            if (documentSnapshot.exists()) {
-                                                String downloadURL = documentSnapshot.getString("downloadurl");
-                                                String username = documentSnapshot.getString("username");
-                                                String userID = documentSnapshot.getString("userID");
-                                                user userInfo = new user(username, downloadURL,userID);
-                                                userArrayList.add(userInfo);
+                        String downloadURL = (String) data.get("downloadurl");
+                        String username = (String) data.get("username");
+                        String userID = (String) data.get("userID");
+                        user userInfo = new user(username, downloadURL,userID);
+                        userArrayList.add(userInfo);
 
-                                                Log.d("Friend Info", "Username: " + username + ", downloadurl: " + downloadURL);
-                                                userAdapterclass.notifyDataSetChanged(); // Veriyi güncelledikten sonra notifyDataSetChanged() çağırın
-                                            } else {
 
-                                                Toast.makeText(getContext(), "Kullanıcı verisi bulunamadı", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(getContext(), "Veri alımında hata oluştu", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
+                        Log.d("Friend Info", "Username: " + username + ", downloadurl: " + downloadURL);
                     }
+                    Collections.sort(userArrayList, new Comparator<user>() {
+                        @Override
+                        public int compare(user o1, user o2) {
+                            return o1.getName().compareTo(o2.getName());
+                        }
+                    });
+                    userAdapterclass.notifyDataSetChanged();
                 }
             }
         });
+
+
     }
 
     private void filterUserList(String query) {

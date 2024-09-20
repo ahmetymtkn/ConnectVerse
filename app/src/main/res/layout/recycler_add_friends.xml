@@ -9,33 +9,36 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:background="@drawable/user_photo_background"
         android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp">
 
         <ImageView
             android:id="@+id/invitationusernimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="8dp"
+            android:layout_margin="2dp"
             android:background="@drawable/user_photo_cut"
             android:clipToOutline="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/invitationusername"
-        android:layout_width="148dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/roboto_medium"
         android:text="Yumurtkan"
-        android:textColor="#D9D9D9"
+        android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout3"
@@ -47,14 +50,14 @@
         android:id="@+id/acceptinvitation"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_image_background_dark"
         android:elevation="8dp"
         android:padding="8dp"
         android:scaleType="center"
         android:src="@drawable/ic_check"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/invitationusername"
+        app:layout_constraintEnd_toStartOf="@+id/refuseinvitation"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -62,7 +65,7 @@
         android:id="@+id/refuseinvitation"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/rounded_image_background_dark"
         android:elevation="8dp"
         android:padding="8dp"
@@ -70,7 +73,6 @@
         android:src="@drawable/ic_cross"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/acceptinvitation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.466"
         tools:ignore="MissingConstraints" />

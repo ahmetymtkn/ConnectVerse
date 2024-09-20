@@ -15,7 +15,7 @@
         <shape
             android:shape="rectangle">
             <corners android:radius="50dp" />
-            <solid android:color="#2c2c2c" /> <!-- Purple color -->
+            <solid android:color="#C195E0" /> <!-- Purple color -->
         </shape>
     </item>
 </layer-list>

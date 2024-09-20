@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ConnectVerseNew"
         tools:targetApi="31">
         <activity
+            android:name=".UserAndFriendChatinPage"
+            android:exported="false" />
+        <activity
             android:name=".ChatPages"
             android:exported="false"
             android:label="@string/title_activity_chat_pages"
@@ -39,6 +42,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
+
+
+
+
 
 </manifest>

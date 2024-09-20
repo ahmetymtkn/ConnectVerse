@@ -3,124 +3,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7F3EB4"
+    android:background="#d5d5d5"
     tools:context=".AddFriendsPage">
 
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#cbc1c1"
-        android:ems="10"
-        android:fontFamily="@font/roboto_medium"
-        android:hint="ADD USER"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textColorHint="#CBC1C1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.232"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/user_photo_background"
-        android:scaleType="centerCrop"
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_bottom2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/searchusericon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+        <EditText
+            android:id="@+id/searcuseredittext"
+            android:layout_width="241dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/user_photo_cut"
-            android:clipToOutline="true"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="SEARCH USER"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="#BC98E0"
+            android:textColorHint="#BC98E0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.232"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="45dp"
+            android:layout_height="44dp"
+            android:layout_alignTop="@+id/searcuseredittext"
+            android:layout_alignBottom="@+id/searcuseredittext"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toEndOf="@+id/searcuseredittext"
+            android:background="@drawable/search_icon_background"
             android:scaleType="centerCrop"
-            tools:src="@drawable/search_button_icon" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searcuseredittext"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/searchusericon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="5dp"
+                android:src="@drawable/search_button" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/user_photo_background"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        android:id="@+id/inviteuserlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_bottom"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
         tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/adduserimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:background="@drawable/user_photo_cut"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/user_photo_background"
+            android:scaleType="centerCrop"
+            tools:ignore="MissingConstraints">
 
+            <ImageView
+                android:id="@+id/adduserimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="2dp"
+                android:background="@drawable/user_photo_cut"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/addusername"
+            android:layout_width="148dp"
+            android:layout_height="32dp"
+            android:layout_alignTop="@+id/relativeLayout2"
+            android:layout_alignBottom="@+id/relativeLayout2"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:layout_toEndOf="@+id/relativeLayout2"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Yumurtkan"
+            android:textColor="#D5D5D5"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/addusericon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/addusername"
+            android:layout_alignBottom="@+id/addusername"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="-7dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="-8dp"
+            android:layout_toEndOf="@+id/addusername"
+            android:background="@drawable/addfriend_send_background"
+            android:elevation="8dp"
+            android:padding="8dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintVertical_bias="0.0" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/addusername"
-        android:layout_width="148dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Yumurtkan"
-        android:textColor="#D9D9D9"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout2"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/addusericon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="70dp"
-        android:background="@drawable/addfriend_send_background"
-        android:elevation="8dp"
-        android:padding="8dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_plus"
-        app:layout_constraintBottom_toBottomOf="@+id/addusername"
-        app:layout_constraintStart_toEndOf="@+id/addusername"
-        app:layout_constraintTop_toTopOf="@+id/addusername"
-        app:layout_constraintVertical_bias="0.444" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/invitationrecyclerview"
-        android:layout_width="376dp"
-        android:layout_height="553dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_top"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/inviteuserlayout"
+        tools:ignore="DuplicateIds" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

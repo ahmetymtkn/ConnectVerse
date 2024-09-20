@@ -1,11 +1,16 @@
 package com.ahmetymtkn.connectversenew;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmetymtkn.connectversenew.databinding.RecyclerAllFriendsBinding;
@@ -35,6 +40,18 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userHolder> {
 
         holder.binding.allusername.setText(userArrayList.get(position).name);
         Picasso.get().load(userArrayList.get(position).downloadurl).into(holder.binding.alluserimage);
+        user selectedUser = userArrayList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(holder.itemView.getContext(), UserAndFriendChatinPage.class);
+                intent.putExtra("selectedUser", selectedUser);
+                holder.itemView.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override

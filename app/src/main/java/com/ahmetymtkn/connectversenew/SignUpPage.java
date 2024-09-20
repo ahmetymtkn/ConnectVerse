@@ -36,11 +36,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -160,26 +162,18 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     private void controlName() {
-        DocumentReference docRef = db.collection("users").document(name);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        String username = binding.signupname.getText().toString();
+        db.collection("users").whereEqualTo("username",username).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // Aynı kullanıcı adı zaten varsa
-                        Toast.makeText(SignUpPage.this, "Bu kullanıcı adı zaten var.", Toast.LENGTH_LONG).show();
-                    } else {
-                        // Kullanıcı adı kullanılabilir
-                        newMemberSignUp();
-                    }
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                    Toast.makeText(SignUpPage.this ,"User with this nickname already exists",Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(SignUpPage.this, "Bir hata oluştu, lütfen tekrar deneyin.", Toast.LENGTH_LONG).show();
-                    Log.e("FirestoreError", "Hata: ", task.getException());
+                    newMemberSignUp();
                 }
             }
         });
-    }
+    }//kontrol edilmesi gerekiyor.
 
     private void controlInput(){
         name = binding.signupname.getText().toString();

@@ -1,6 +1,8 @@
 package com.ahmetymtkn.connectversenew.model;
 
-public class user {
+import java.io.Serializable;
+
+public class user implements Serializable {
     public String name;
     public String downloadurl;
     public String userID;
