@@ -91,3 +91,7 @@ This section of the app leverages AI functionalities to engage users in chat, po
 ## Conclusion
 
 ConnectVerse is a feature-rich messaging application that provides basic communication tools as well as the ability to chat with artificial intelligence. With its user-friendly interface and seamless integration of Firebase services, it enables users to efficiently manage their social connections.
+
+
+[DOWNLOAD APK](https://github.com/ahmetymtkn/photo/releases/download/untagged-2cdfa898115c1344cb98/ConnectVerse1.3.apk)
+
