@@ -48,6 +48,10 @@ Users can manage their friends list, add new friends, and view all existing frie
 
 - **Friend Requests**: Users can send invitations to others to become friends, which can be accepted or declined.
 
+
+#### Online/Offline Case Management
+The app keeps track of users' online or offline status. When users open the app, they can show other users that they are online. This feature helps users see each other's status and know when they are ready to chat. 
+
 ### User Interface
 
 #### Navigation
