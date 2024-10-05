@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:maxWidth="400dp"
+        android:maxWidth="200dp"
         android:maxHeight="20dp"
         android:textColor="#7C7B7B"
         app:layout_constraintStart_toStartOf="@+id/chatsusername"

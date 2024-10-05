@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="#FFFFFF" /> <!-- Yarı saydam beyaz arka plan -->
+            <solid android:color="#f7f7f7" /> <!-- Yarı saydam beyaz arka plan -->
             <corners
                 android:topLeftRadius="55dp"
                 android:topRightRadius="55dp"
