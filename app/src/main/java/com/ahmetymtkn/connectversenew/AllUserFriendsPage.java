@@ -15,13 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ahmetymtkn.connectversenew.databinding.ActivitySignUpPageBinding;
 import com.ahmetymtkn.connectversenew.databinding.FragmentAllUserFriendsPageBinding;
 import com.ahmetymtkn.connectversenew.model.user;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,9 +50,6 @@ public class AllUserFriendsPage extends Fragment {
         storageReference = storage.getReference();
         userArrayList = new ArrayList<>();
         filteredUserArrayList = new ArrayList<>();
-
-
-
     }
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -65,10 +58,10 @@ public class AllUserFriendsPage extends Fragment {
         binding.alluser.setLayoutManager(new LinearLayoutManager(getContext()));
         userAdapterclass = new userAdapter(userArrayList);
         binding.alluser.setAdapter(userAdapterclass);
+
         binding.findfriendedit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed
             }
 
             @Override
@@ -78,7 +71,6 @@ public class AllUserFriendsPage extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // No action needed
             }
         });
 
@@ -93,8 +85,12 @@ public class AllUserFriendsPage extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
     private void getfriend() {
-        db.collection("friendship").document(auth.getUid()).collection("friends").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("friendship")
+                .document(auth.getUid())
+                .collection("friends")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -104,13 +100,15 @@ public class AllUserFriendsPage extends Fragment {
                 if (value != null) {
                     userArrayList.clear();
                     for (DocumentSnapshot snapshot : value.getDocuments()) {
+
                         Map<String, Object> data = snapshot.getData();
                         String downloadURL = (String) data.get("downloadurl");
                         String username = (String) data.get("username");
                         String userID = (String) data.get("userID");
-                        user userInfo = new user(username, downloadURL,userID);
-                        userArrayList.add(userInfo);
 
+                        user userInfo = new user(username, downloadURL,userID);
+
+                        userArrayList.add(userInfo);
 
                         Log.d("Friend Info", "Username: " + username + ", downloadurl: " + downloadURL);
                     }
@@ -124,13 +122,12 @@ public class AllUserFriendsPage extends Fragment {
                 }
             }
         });
-
-
     }
 
     private void filterUserList(String query) {
 
         filteredUserArrayList.clear();
+
         if (query.isEmpty()) {
             filteredUserArrayList.addAll(userArrayList);
         } else {
@@ -142,7 +139,4 @@ public class AllUserFriendsPage extends Fragment {
         }
         userAdapterclass.updateData(filteredUserArrayList);
     }
-
-
-
 }

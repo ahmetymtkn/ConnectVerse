@@ -1,12 +1,11 @@
 package com.ahmetymtkn.connectversenew;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -16,14 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ahmetymtkn.connectversenew.databinding.FragmentAddFriendsPageBinding;
-import com.ahmetymtkn.connectversenew.databinding.FragmentAllUserFriendsPageBinding;
 import com.ahmetymtkn.connectversenew.model.user;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,8 +55,6 @@ public class AddFriendsPage extends Fragment {
         auth = FirebaseAuth.getInstance();
         storageReference = storage.getReference();
         invitationArrayList = new ArrayList<>();
-
-
     }
 
     @Nullable
@@ -70,14 +65,14 @@ public class AddFriendsPage extends Fragment {
         binding.invitationrecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         invitationAdapterClass= new invitationAdapter(invitationArrayList);
         binding.invitationrecyclerview.setAdapter(invitationAdapterClass);
+        binding.inviteuserlayout.setVisibility(View.GONE);
+
         binding.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchuser();
             }
         });
-
-        binding.inviteuserlayout.setVisibility(View.GONE);
 
         binding.addusericon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +87,10 @@ public class AddFriendsPage extends Fragment {
 
 
     private void getfriend(){
-        db.collection("friendship").document(auth.getUid()).collection("adduser").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("friendship")
+                .document(auth.getUid())
+                .collection("adduser")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -106,7 +104,9 @@ public class AddFriendsPage extends Fragment {
                         String downloadURL = (String) data.get("downloadurl");
                         String userID = (String) data.get("userID");
                         String username = (String) data.get("username");
+
                         user userInfo = new user(username, downloadURL,userID);
+
                         invitationArrayList.add(userInfo);
                     }
                     invitationAdapterClass.notifyDataSetChanged();
@@ -122,7 +122,9 @@ public class AddFriendsPage extends Fragment {
     }
 
     private void invitenewfriend(){
-        db.collection("users").document(auth.getUid()).get()
+        db.collection("users")
+                .document(auth.getUid())
+                .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -136,11 +138,18 @@ public class AddFriendsPage extends Fragment {
                             userInfo.put("username", username);
                             userInfo.put("userID",userID);
 
-                            db.collection("friendship").document(SearchinguserID).collection("adduser").document(auth.getUid()).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            db.collection("friendship")
+                                    .document(SearchinguserID)
+                                    .collection("adduser")
+                                    .document(auth.getUid())
+                                    .set(userInfo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     binding.inviteuserlayout.setVisibility(View.GONE);
                                     binding.searcuseredittext.setText("");
+
+                                    Toast.makeText(getContext(),"Friend invitation sent.",Toast.LENGTH_LONG);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -151,7 +160,6 @@ public class AddFriendsPage extends Fragment {
                             });
 
                         } else {
-
                             Toast.makeText(getContext(), "Kullanıcı verisi bulunamadı", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -168,7 +176,10 @@ public class AddFriendsPage extends Fragment {
     private void searchuser() {
         String searchText = binding.searcuseredittext.getText().toString();
 
-        db.collection("users").whereEqualTo("username", searchText).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("users")
+                .whereEqualTo("username", searchText)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

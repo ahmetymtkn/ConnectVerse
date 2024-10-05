@@ -7,15 +7,6 @@
     android:background="@drawable/img"
     tools:context=".LoginPage">
 
-    <ImageView
-        android:id="@+id/mylogobackimage"
-        android:layout_width="515dp"
-        android:layout_height="465dp"
-        android:rotation="315"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logonn" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="84dp"
@@ -37,7 +28,7 @@
         android:ems="15"
         android:fontFamily="@font/roboto_medium"
         android:hint="Enter E-mail"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"

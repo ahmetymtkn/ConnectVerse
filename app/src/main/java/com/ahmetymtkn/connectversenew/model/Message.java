@@ -6,15 +6,20 @@ public class Message {
     private String message;
     private long timestamp;
 
-    // Boş Constructor (Firebase'in serileştirmesi için gerekli)
-    public Message() {}
+    public Message(){
 
+    }
     // Parametreli Constructor
     public Message(String senderID, String receiverID, String message, long timestamp) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.message = message;
         this.timestamp = timestamp;
+    }
+
+    public Message(String userMessage, String user) {
+        this.message = userMessage;
+        this.senderID=user;
     }
 
     // Getter ve Setter metodları

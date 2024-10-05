@@ -7,18 +7,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Toast;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.ahmetymtkn.connectversenew.databinding.ActivityLoginPageBinding;
 import com.google.firebase.auth.AuthResult;
@@ -37,6 +32,9 @@ public class LoginPage extends AppCompatActivity {
     private String email,password;
 
 
+    ActivityResultLauncher<String> permissionLauncher;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +46,7 @@ public class LoginPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-
-
-
-
         controlUser();
-
-
 
         binding.changepagetext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,19 +79,13 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
-
         }
-
-
-
         private void controlUser(){
             if(user != null){
                 startActivity(new Intent(LoginPage.this, ChatPages.class));
                 finish();
             }
         }
-
-
 
         private boolean controlInput(){
             email = binding.loginemail.getText().toString();
@@ -113,7 +99,6 @@ public class LoginPage extends AppCompatActivity {
             }
         }
 
-
         public void loginMethod(View view){
             if (controlInput()) {
                 mAuth.signInWithEmailAndPassword(email, password)
@@ -123,12 +108,13 @@ public class LoginPage extends AppCompatActivity {
                                 user = mAuth.getCurrentUser();
                                 if (user != null) {
                                     if (user.isEmailVerified()) {
+
                                         Toast.makeText(LoginPage.this, "Login successful!", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(LoginPage.this,ChatPages.class));
                                         finish();
+
                                     } else {
                                         Toast.makeText(LoginPage.this, "You need to verify your email address. Please check your email.", Toast.LENGTH_LONG).show();
-
                                         mAuth.signOut();
                                     }
                                 }
@@ -142,4 +128,5 @@ public class LoginPage extends AppCompatActivity {
                         });
             }
         }
+
 }

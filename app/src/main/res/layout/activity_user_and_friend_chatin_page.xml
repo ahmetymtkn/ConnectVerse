@@ -89,13 +89,16 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
-        android:background="#f2f2f2"
+        android:layout_marginTop="-55dp"
+        android:layout_marginBottom="-15dp"
+        android:background="@drawable/rounded_top4"
+        android:paddingTop="25dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout7" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout8"
@@ -158,16 +161,6 @@
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/send" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="-55dp"
-        android:background="@drawable/rounded_top3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout7"></RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

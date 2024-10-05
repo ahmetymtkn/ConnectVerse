@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp">
+    android:layout_margin="10dp">
 
 
     <RelativeLayout
@@ -46,7 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="lastMessage"
+        android:maxWidth="400dp"
+        android:maxHeight="20dp"
         android:textColor="#7C7B7B"
         app:layout_constraintStart_toStartOf="@+id/chatsusername"
         app:layout_constraintTop_toBottomOf="@+id/chatsusername" />

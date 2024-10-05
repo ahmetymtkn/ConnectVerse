@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#f2f2f2" />
-    <corners android:topLeftRadius="55dp" android:topRightRadius="55dp" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- Yarı saydam beyaz arka plan -->
+            <corners
+                android:topLeftRadius="55dp"
+                android:topRightRadius="55dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+    <item android:top="22dp" android:bottom="10dp" android:left="10dp" android:right="10dp">
+        <bitmap
+            android:src="@drawable/aibackverse"
+            android:tileMode="disabled"/>
+    </item>
+
+</layer-list>

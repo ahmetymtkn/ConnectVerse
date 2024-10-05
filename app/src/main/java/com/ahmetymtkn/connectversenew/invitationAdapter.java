@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +54,7 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
 
         holder.binding.invitationusername.setText(invitationArrayList.get(position).name);
         Picasso.get().load(invitationArrayList.get(position).downloadurl).into(holder.binding.invitationusernimg);
+
         holder.binding.acceptinvitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,12 +62,16 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
                 friendInfo.put("userID",invitationArrayList.get(position).userID);
                 friendInfo.put("downloadurl",invitationArrayList.get(position).downloadurl);
                 friendInfo.put("username",invitationArrayList.get(position).name);
-                db.collection("friendship").document(auth.getUid()).collection("friends").document(invitationArrayList.get(position).userID).set(friendInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("friendship")
+                        .document(auth.getUid())
+                        .collection("friends")
+                        .document(invitationArrayList.get(position).userID)
+                        .set(friendInfo)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         addfriend(invitationArrayList.get(position).userID);
                         deletefriendshipinvite(invitationArrayList.get(position).userID,position);
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -87,7 +91,9 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
     }
 
     private void addfriend(String friendsID){
-        db.collection("users").document(auth.getUid()).get()
+        db.collection("users")
+                .document(auth.getUid())
+                .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -101,20 +107,22 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
                             userInfo.put("username", username);
                             userInfo.put("userID", userID);
 
-                            db.collection("friendship").document(friendsID).collection("friends").document(auth.getUid()).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
+                            db.collection("friendship")
+                                    .document(friendsID)
+                                    .collection("friends")
+                                    .document(auth.getUid())
+                                    .set(userInfo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
 
-                                }
+                                @Override
+                                public void onSuccess(Void unused) {}
+
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.d("Firestore", "Hata: " + e.getLocalizedMessage());
-
                                 }
                             });
-
-
                         }
                     }
                 })
@@ -127,7 +135,11 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
     }
 
     private void deletefriendshipinvite(String friendID, int position) {
-        db.collection("friendship").document(auth.getUid()).collection("adduser").document(friendID).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("friendship")
+                .document(auth.getUid())
+                .collection("adduser")
+                .document(friendID).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 if (position >= 0 && position < invitationArrayList.size()) {
@@ -143,16 +155,10 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
         });
     }
 
-
-
     @Override
     public int getItemCount() {
         return invitationArrayList.size();
     }
-
-
-
-
 
     public class invitationHolder extends RecyclerView.ViewHolder{
 
@@ -162,11 +168,5 @@ public class invitationAdapter extends RecyclerView.Adapter<invitationAdapter.in
             super(binding.getRoot());
             this.binding=binding;
         }
-
     }
-
-
-
-
-
 }

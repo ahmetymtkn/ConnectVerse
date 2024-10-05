@@ -14,24 +14,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout9"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="12dp"
-            tools:src="@tools:sample/avatars" />
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="10dp"
+            android:background="#2C2C2C"
+            android:scaleType="centerCrop"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/userphoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="2dp"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="22dp"
+            android:layout_alignTop="@+id/relativeLayout9"
+            android:layout_alignBottom="@+id/relativeLayout9"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="11dp"
+            android:layout_toEndOf="@+id/relativeLayout9"
             android:fontFamily="@font/roboto_medium"
             android:text="Nick Name"
             android:textColor="#D9D9D9"
@@ -42,8 +57,8 @@
             android:id="@+id/powerbutton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignTop="@+id/textView3"
-            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignTop="@+id/username"
+            android:layout_alignBottom="@+id/username"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="-5dp"
             android:layout_marginEnd="48dp"
@@ -68,10 +83,11 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lastmessagerecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="-55dp"
-        android:background="@drawable/rounded_top3"
+        android:background="@drawable/rounded_top4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout6"

@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,27 +27,20 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 public class SignUpPage extends AppCompatActivity {
 
@@ -160,6 +152,38 @@ public class SignUpPage extends AppCompatActivity {
 
                 });
     }
+    private void uploadImage(){
+        UUID uuid = UUID.randomUUID();
+        final String imageName = "profilephoto/" + uuid + ".jpg";
+
+        storageReference.child(imageName).putFile(imageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                getImageUri(imageName);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SignUpPage.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void getImageUri(String imageName){
+        StorageReference newReference = FirebaseStorage.getInstance().getReference(imageName);
+        newReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                saveUserInfo(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("Hata: resmin url alamadım");
+                Toast.makeText(SignUpPage.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private void controlName() {
         String username = binding.signupname.getText().toString();
@@ -173,7 +197,7 @@ public class SignUpPage extends AppCompatActivity {
                 }
             }
         });
-    }//kontrol edilmesi gerekiyor.
+    }
 
     private void controlInput(){
         name = binding.signupname.getText().toString();
@@ -208,7 +232,6 @@ public class SignUpPage extends AppCompatActivity {
                 });
     }
 
-
     private void newMemberSignUp(){
         auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
@@ -236,7 +259,6 @@ public class SignUpPage extends AppCompatActivity {
         String downloadUrl = uri.toString();
         String userID = auth.getCurrentUser().getUid();
 
-
         Map<String,Object> userInfo = new HashMap<>();
         userInfo.put("useremail", email);
         userInfo.put("downloadurl", downloadUrl);
@@ -261,46 +283,7 @@ public class SignUpPage extends AppCompatActivity {
         });
     }
 
-    private void getImageUri(String imageName){
-        StorageReference newReference = FirebaseStorage.getInstance().getReference(imageName);
-        newReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                saveUserInfo(uri);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                System.out.println("Hata: resmin url alamadım");
-                Toast.makeText(SignUpPage.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void uploadImage(){
-        UUID uuid = UUID.randomUUID();
-        final String imageName = "images/" + uuid + ".jpg";
-
-        storageReference.child(imageName).putFile(imageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                getImageUri(imageName);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                System.out.println("Hata: fotoğrafın yüklemesi sırasında hata çıktı");
-                Toast.makeText(SignUpPage.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
     public void signupMethod(View view){
         controlInput();
-
-
     }
-
-
-
 }
