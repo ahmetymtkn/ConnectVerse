@@ -88,8 +88,10 @@ Allows users to search for other users and send friend invitations. It provides 
 ### AIChatPage Class
 This section of the app leverages AI functionalities to engage users in chat, possibly providing responses or suggestions based on user inputs.
 
-##Deficiencies
-Online feature is not stable. Notification feature is missing. Only chat with AI, can't send photos.
+## Deficiencies
+#### Online feature is not stable. 
+#### Notification feature is missing. 
+#### Only chat with AI, can't send photos.
 
 ## Conclusion
 
