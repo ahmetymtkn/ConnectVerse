@@ -1,5 +1,5 @@
 # CONNECTVERSE: CHAT APP
-![Figma App](https://github.com/ahmetymtkn/photo/blob/main/CONNECTVERSE.png)
+![Figma App](https://github.com/ahmetymtkn/ConnectVerse/blob/main/CONNECTVERSE.png)
 
 ConnectVerse is a robust messaging application built on the Android platform that leverages Firebase services for authentication, data storage, and real-time communication. The app allows users to connect with friends, engage in one-on-one chats, and utilize artificial intelligence features for enhanced user interaction. This document provides a comprehensive overview of the application's architecture, functionalities, and the technologies employed.
 
